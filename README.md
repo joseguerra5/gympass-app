@@ -30,3 +30,14 @@ GymPass style app.
 - [ ] Todas listas de dados precisam estar paginadas com 20 itens por página
 - [ ] O suário deve ser identificado por um JWT(JSON Web Token)
 
+## To run
+
+- npm i
+
+- docker compose 
+
+- npx prisma migrate dev
+
+- docker compose up -d
+
+- npm run dev
