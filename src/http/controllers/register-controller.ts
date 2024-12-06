@@ -1,8 +1,7 @@
 import { z } from "zod"
 import { FastifyRequest, FastifyReply } from "fastify"
-import { RegisterUseCase } from "../../use-cases/register";
-import { PrismaUsersRepository } from "@/repositories/prisma/prisma-users-repository";
 import { UserAlreadyExistsError } from "@/use-cases/errors/user-already-exists-error";
+import { makeRegisterUseCase } from "@/use-cases/factories/make-register-use-case";
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
@@ -15,9 +14,8 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 
   try {
     //principio da inversão de dependencia faz com que o arquivo que precise do caso de uso envie a dependencia instanciando ela primeiro
-    const usersRepository = new PrismaUsersRepository()
 
-    const registerUseCase = new RegisterUseCase(usersRepository)
+    const registerUseCase = makeRegisterUseCase()
 
     await registerUseCase.execute({
       email,
