@@ -7,7 +7,7 @@ import { randomUUID } from "crypto"
 
 
 export class InMemoryGymsRepository implements GymsRepository {
-
+ 
   public items: Gym[] = []
 
   async findById(id: string): Promise<Gym | null> {
@@ -19,6 +19,13 @@ export class InMemoryGymsRepository implements GymsRepository {
 
     return gym
   }
+
+  async searchMany(query: string, page: number) {
+    return this.items
+      .filter((item) => item.title.includes(query))
+      .slice((page -1) * 20, page * 20)
+  }
+
 
   async create(data: Prisma.GymCreateInput) {
     const gym = {

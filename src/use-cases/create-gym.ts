@@ -13,7 +13,7 @@ interface CreateGymUseCaseRequest {
 }
 
 interface CreateGymUseCaseResponse {
-  user: Gym
+  gym: Gym
 }
 
 export class CreateGymUseCase {
