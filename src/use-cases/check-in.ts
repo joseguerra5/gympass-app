@@ -3,7 +3,6 @@ import { CheckInsRepository } from "@/repositories/check-ins-repository";
 import { GymsRepository } from "@/repositories/gyms-repository";
 import { ResourceNotFound } from "./errors/resource-not-found-error";
 import { getDistanceBetweenCoordinates } from "@/utils/get-distance-between-cordinates";
-import { error } from "console";
 
 interface CheckInUseCaseRequest {
   userId: string

@@ -13,12 +13,12 @@ describe("Get user metrics Use Case", () => {
 
   it("should be able get check ins count from metrics", async () => {
     await chekInsRepository.create({
-      gym_Id: "gym-01",
+      gym_id: "gym-01",
       user_id: "user-01",
     })
 
     await chekInsRepository.create({
-      gym_Id: "gym-02",
+      gym_id: "gym-02",
       user_id: "user-01",
     })
 

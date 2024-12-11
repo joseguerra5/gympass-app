@@ -1,13 +1,15 @@
 //porta de entrada para qualquer operação no banco de dados todas as operaç~~oes tem que passar por aqi
 import { Gym, Prisma } from "@prisma/client"
-import { GymsRepository } from "../gyms-repository"
+import { findManyNearbyParams, GymsRepository } from "../gyms-repository"
 import { randomUUID } from "crypto"
+import { getDistanceBetweenCoordinates } from "@/utils/get-distance-between-cordinates"
 
 
 
 
 export class InMemoryGymsRepository implements GymsRepository {
- 
+
+
   public items: Gym[] = []
 
   async findById(id: string): Promise<Gym | null> {
@@ -20,10 +22,22 @@ export class InMemoryGymsRepository implements GymsRepository {
     return gym
   }
 
+  async findManyNearby(params: findManyNearbyParams) {
+    return this.items.filter(item => {
+      const distance = getDistanceBetweenCoordinates(
+        { latitude: params.latitude, longitude: params.longitude },
+        { latitude: item.latitude.toNumber(), longitude: item.longitude.toNumber() }
+      )
+
+      console.log(distance)
+      return distance < 10
+
+    })
+  }
   async searchMany(query: string, page: number) {
     return this.items
       .filter((item) => item.title.includes(query))
-      .slice((page -1) * 20, page * 20)
+      .slice((page - 1) * 20, page * 20)
   }
 
 
