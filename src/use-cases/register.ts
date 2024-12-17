@@ -1,4 +1,4 @@
-import { hash } from "bcryptjs"
+import bcryptjs from "bcryptjs"
 import { UsersRepository } from "../repositories/users-repository"
 import { UserAlreadyExistsError } from "./errors/user-already-exists-error"
 import { User } from "@prisma/client"
@@ -30,7 +30,7 @@ export class RegisterUseCase {
     password
   }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
     // para desincriptografar precisa passar a passwor 
-    const password_hash = await hash(password, 6)
+    const password_hash = await bcryptjs.hash(password, 6)
 
     const userWithSameEmail = await this.usersRepository.findByEmail(email)
 

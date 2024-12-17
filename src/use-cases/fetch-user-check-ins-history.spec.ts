@@ -30,8 +30,8 @@ describe("Fetch Check Ins Use Case", () => {
 
     expect(checkIns).toHaveLength(2)
     expect(checkIns).toEqual([
-      expect.objectContaining({ gym_Id: "gym-01" }),
-      expect.objectContaining({ gym_Id: "gym-02" })
+      expect.objectContaining({ gym_id: "gym-01" }),
+      expect.objectContaining({ gym_id: "gym-02" })
     ])
 
   })
@@ -52,8 +52,8 @@ describe("Fetch Check Ins Use Case", () => {
 
     expect(checkIns).toHaveLength(2)
     expect(checkIns).toEqual([
-      expect.objectContaining({ gym_Id: "gym-21" }),
-      expect.objectContaining({ gym_Id: "gym-22" })
+      expect.objectContaining({ gym_id: "gym-21" }),
+      expect.objectContaining({ gym_id: "gym-22" })
     ])
   })
 })

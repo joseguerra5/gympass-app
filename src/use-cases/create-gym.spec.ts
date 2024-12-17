@@ -1,6 +1,4 @@
 import { expect, describe, it, beforeEach } from "vitest"
-import { RegisterUseCase } from "./register"
-import { InMemoryUsersRepository } from "@/repositories/in-memory/in-memory-users-repository"
 import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gyms-repositories"
 import { CreateGymUseCase } from "./create-gym"
 
@@ -15,16 +13,18 @@ describe("Create gym Use Case", () => {
   })
 
   it("should be able to create gym", async () => {
-    const prismaUsersRepository = new InMemoryUsersRepository()
-    const registerUseCase = new RegisterUseCase(prismaUsersRepository)
+    const prismaUsersRepository = new InMemoryGymsRepository()
+    const registerUseCase = new CreateGymUseCase(prismaUsersRepository)
 
-    const { user } = await registerUseCase.execute({
-      name: "Jhon Doe",
-      email: "Jhondoe@example.com",
-      password: "123456"
+    const { gym } = await registerUseCase.execute({
+      description: "Some description",
+      latitude: 41.3949073,
+      longitude: -8.7138347,
+      title: "JavaScript Gym",
+      phone: "11111111"
     })
 
-    expect(user.id).toEqual(expect.any(String))
+    expect(gym.id).toEqual(expect.any(String))
   })
 
 })
