@@ -8,7 +8,7 @@ export async function search(request: FastifyRequest, reply: FastifyReply) {
     page: z.coerce.number().min(1).default(1)
   })
 
-  const { q, page } = searrchGymsQuerySchema.parse(request.params)
+  const { q, page } = searrchGymsQuerySchema.parse(request.query)
 
   //principio da inversão de dependencia faz com que o arquivo que precise do caso de uso envie a dependencia instanciando ela primeiro
 

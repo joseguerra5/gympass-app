@@ -7,7 +7,7 @@ export async function history(request: FastifyRequest, reply: FastifyReply) {
     page: z.coerce.number().min(1).default(1)
   })
 
-  const { page } = checkInHistoryQuerySchema.parse(request.body)
+  const { page } = checkInHistoryQuerySchema.parse(request.query)
 
   //principio da inversão de dependencia faz com que o arquivo que precise do caso de uso envie a dependencia instanciando ela primeiro
 

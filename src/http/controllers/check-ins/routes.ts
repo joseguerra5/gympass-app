@@ -15,6 +15,6 @@ export async function checkInsRoutes(app: FastifyInstance) {
   app.get("/check-ins/metrics", metric)
 
   app.post("/gyms/:gymId/check-ins", create)
-  app.patch("/gyms/:checkInId/validate", validate)
+  app.patch("/check-ins/:checkInId/validate", validate)
 
 }

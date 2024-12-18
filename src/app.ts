@@ -31,6 +31,7 @@ app.setErrorHandler((error, _, reply) => {
   } else {
     // TODO: Here we should log to an external took like DataDog/Newrelic/sentry
   }
+  console.error(error)
   return reply.status(500).send({ message: "internal server error." })
 })
 
