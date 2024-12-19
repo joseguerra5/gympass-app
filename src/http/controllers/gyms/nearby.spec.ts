@@ -12,7 +12,7 @@ describe("Search nearby gyms (e2e)", () => {
   })
   it("Should be albe to create gym", async () => {
 
-    const { token } = await createAndAuthenticateUser(app)
+    const { token } = await createAndAuthenticateUser(app, true)
 
     await request(app.server)
       .post("/gyms")
@@ -34,9 +34,6 @@ describe("Search nearby gyms (e2e)", () => {
       .set("Authorization", `Bearer ${token}`)
       .send()
 
-
-
-    console.log(response)
     expect(response.statusCode).toEqual(200)
   })
 })

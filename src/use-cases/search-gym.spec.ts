@@ -31,17 +31,17 @@ describe("Search Gym Use Case", () => {
     })
 
     const { gyms } = await sut.execute({
-      query: "Jhon",
+      q: "Jhon",
       page: 1
 
     })
 
     expect(gyms).toHaveLength(1)
     expect(gyms).toEqual([
-      expect.objectContaining({title: "Jhon Doe Gym"}),
-    ])   
+      expect.objectContaining({ title: "Jhon Doe Gym" }),
+    ])
   })
-  
+
   it("should be able to fetch paginated gyms search", async () => {
     for (let i = 1; i <= 22; i++) {
       await gymsRepository.create({
@@ -54,15 +54,15 @@ describe("Search Gym Use Case", () => {
     }
 
     const { gyms } = await sut.execute({
-      query: "gym",
+      q: "gym",
       page: 2
 
     })
 
     expect(gyms).toHaveLength(2)
     expect(gyms).toEqual([
-      expect.objectContaining({title: "gym 21"}),
-      expect.objectContaining({title: "gym 22"})
+      expect.objectContaining({ title: "gym 21" }),
+      expect.objectContaining({ title: "gym 22" })
     ])
   })
 })

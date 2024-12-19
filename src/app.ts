@@ -1,6 +1,7 @@
 import { env } from '@/env/index'
 import fastify from 'fastify'
 import fastifyJwt from '@fastify/jwt'
+import fastifyCookie from '@fastify/cookie'
 import { ZodError } from 'zod'
 import { usersRoutes } from './http/controllers/users/routes'
 import { gymsRoutes } from './http/controllers/gyms/routes'
@@ -12,8 +13,17 @@ export const app = fastify()
 
 // para utilizar o jwt tem que registrar a biblioteca antes das rotas
 app.register(fastifyJwt, {
-  secret: env.JWT_SECRET
+  secret: env.JWT_SECRET,
+  cookie: {
+    cookieName: "refreshToken",
+    signed: false
+  },
+  sign: {
+    expiresIn: "10m"
+  }
 })
+
+app.register(fastifyCookie)
 
 app.register(usersRoutes)
 app.register(gymsRoutes)

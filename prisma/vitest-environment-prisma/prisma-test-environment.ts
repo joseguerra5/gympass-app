@@ -34,9 +34,6 @@ export default <Environment>{
 
     // metodo para executar comendo em terminal no código
     execSync("npx prisma migrate deploy")
-    console.log()
-
-
 
     return {
       async teardown() {
